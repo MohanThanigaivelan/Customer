@@ -1,0 +1,27 @@
+
+<%= form_with scope: :customer, url: customer_index_path,local: true do |form| %>
+   <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+ <p>
+    <%= form.label :date_0f_birth %><br>
+    <%= form.date_field :dob %>
+  </p>
+   <p>
+    <%= form.label :Photo %><br>
+    <%= form.file_field :photo %>
+  </p>
+  <p>
+    <%= form.label :Address %><br>
+    <%= form.text_area :address %>
+  </p>
+  <p>
+    <%= form.label :Phone_no %><br>
+    <%= form.number_field :phone %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
