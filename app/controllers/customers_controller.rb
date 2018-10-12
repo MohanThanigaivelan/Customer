@@ -21,13 +21,13 @@ end
   	render 'new'
   end	
 end
+
  def update
     @customer = Customer1.find(params[:id])
- 
-    if @customer.update(customer_params)
-       render plain: params[:article].inspect
+    if @customer.update_attributes(customer_params)
+       redirect_to :action => 'show', :id => @customer
     else
-       render plain: params[:article].inspect
+       render 'edit'
     end
   end
  
@@ -36,8 +36,8 @@ end
   @customer.destroy
   redirect_to customers_path
  end
-private
+ private
   def customer_params
-    params.require(:customer).permit(:name,:dob,:photo,:address,:phone)
+    params.require(:customer1).permit(:name,:dob,:photo,:address,:phone)
   end
 end

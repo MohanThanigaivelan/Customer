@@ -1,17 +1,15 @@
 
 <h1>Edit customer</h1>
  
-
-<%= form_with(model: @customers, local: true) do |form| %>
-
+<%= form_for @customer, :url =>{:action => "update", :id =>@customer} do |form| %>
   <% if @customer.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@customers.errors.count, "error") %> prohibited
+        <%= pluralize(@customer.errors.count, "error") %> prohibited
         this customer from being saved:
       </h2>
       <ul>
-        <% @customers.errors.full_messages.each do |msg| %>
+        <% @customer.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -39,8 +37,8 @@
     <%= form.number_field :phone %>
   </p>
  
-  <p>
-    <%= form.submit %>
+  <p> 
+    <%= form.submit "Save changes" %>
   </p>
   <% end %>
   <%= link_to 'Back', customer_path %>
