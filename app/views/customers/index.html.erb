@@ -17,11 +17,13 @@
       <td><%= customer.address %></td>
       <td><%= customer.phone %></td>
       <td><%= customer.photo %></td>
-      <td><%= link_to 'Show', customer_path(customer) %></td>
+      <td><%= link_to 'Show', 
+customer_path(customer) %></td>
        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
       <td><%= link_to 'Destroy', customer_path(customer),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
-    </tr>
+      <td><%= link_to 'BuyItems','items/new' %></td>
+    </tr> 
   <% end %>
 </table>

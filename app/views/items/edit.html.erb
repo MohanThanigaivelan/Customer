@@ -1,0 +1,17 @@
+
+<h1>Edit item</h1>
+
+<%= form_with(model: @item, local: true) do |form| %>
+  <p>
+    <%= form.label :perviousstock %><br>
+    <%= form.text_field :stock %>
+  </p>
+  <p>
+    <%= form.label :stock1 %><br>
+    <%= form.text_field :stock1 %>
+  </p>
+  <p> 
+    <%= form.submit "Save changes" %>
+  </p>
+  <% end %>
+  <%= link_to 'Back', items_path %>
