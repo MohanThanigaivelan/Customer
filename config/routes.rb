@@ -3,4 +3,5 @@ Rails.application.routes.draw do
    
 
    resources :customers, :orders ,:items
+   get "bill",to: "orders#bill"
 end
