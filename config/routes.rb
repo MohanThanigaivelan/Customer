@@ -4,4 +4,8 @@ Rails.application.routes.draw do
 
    resources :customers, :orders ,:items
    get "bill",to: "orders#bill"
+   patch "bill",to: "orders#updateStock"
+   get "buy",to: "orders#buy"
+   post "buy",to: "orders#buy"
+   post "bill",to: "orders#bill"
 end

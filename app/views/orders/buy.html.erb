@@ -1,0 +1,34 @@
+ <h1>BUY ITEMS</h1>
+<%= form_with(model: @order, local: true) do |form| %>
+  <p>
+  <%= form.label :CustomerID %><br>
+    <%= form.number_field :cust_id %>
+  </p>
+  <p>
+    <%= form.label :ITEMID%><br>
+    <%= form.text_field :item_id %>
+  </p>
+ <p>
+    <%= form.label :ITEMNAME %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :cost %><br>
+    <%= form.number_field :cost %>
+  </p>
+   <p>
+    <%= form.label :avaliablestock %><br>
+    <%= form.number_field :stock %>
+  </p>
+  <p>
+    <%= form.label :quantity %><br>
+    <%= form.number_field :quantity %>
+  </p>
+  <p>
+    <%= form.label :total %><br>
+    <%= form.number_field :total %>
+  </p>
+  <p>
+    <%= form.submit "PLACE ORDER"%>
+  </p>
+<% end %>

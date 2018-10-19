@@ -1,6 +1,5 @@
  <h1>ADD NEW ITEMS</h1>
 <%= form_with scope: :item , :html => { :multipart =>true},url: items_path,local: true do |form| %>
-
   <p>
     <%= form.label :SERIALNUMBER %><br>
     <%= form.number_field :serial_no %>

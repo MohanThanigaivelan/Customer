@@ -1,4 +1,7 @@
-
-<%= text_field :quantity, class: "text-field", id: "quantity" %>
-<%= text_field :price, class: "text-field", id: "price" %>
-<%= text_field :total_amount, class: "text-field", id: "total_amount" %>
+<%= form_with scope: :order , :html => { :multipart =>true},url: buy_path(:cust_id),local: true do |form| %>
+<%= text_field_tag 'cost', params[:cost], class: "text_field", id: "cost", onkeydown: "sample();" %>
+<%= text_field_tag 'quantity', params[:quantity], class: "text_field", id: "quantity", onkeydown: "sample();" %>
+<%= text_field_tag 'total', params[:tatal], class: "text_field", id: "total"%>
+<%= javascript_include_tag('calculation.js') %>
+<%= form.submit "Proceed" %>
+<% end %>
