@@ -1,0 +1,22 @@
+ <h1>ADD NEW ITEMS</h1>
+<%= form_with scope: :item , :html => { :multipart =>true},url: items_path,local: true do |form| %>
+  <p>
+    <%= form.label :SERIALNUMBER %><br>
+    <%= form.number_field :serial_no %>
+  </p>
+ <p>
+    <%= form.label :ITEMNAME %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :cost %><br>
+    <%= form.number_field :cost %>
+  </p>
+   <p>
+    <%= form.label :stock %><br>
+    <%= form.number_field :stock %>
+  </p>
+  <p>
+    <%= form.submit "Submit changes"%>
+  </p>
+<% end %>

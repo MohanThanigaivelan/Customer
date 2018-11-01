@@ -1,0 +1,25 @@
+<%= form_for @customer, url: "/orders", html: {method: "get"} do |form| %>
+<p>
+  <h1>Customer Name: <%= @customer.name %></h1>
+</p>
+<table>
+<h1>BILLING DETAILS</h1>
+<tr>
+    <th><strong>SERIAL NUMBER  </strong></th>
+ 	<th><strong> ITEM NAME  </strong></th>
+ 	<th><strong>ITEM COST</strong></th>  
+ 	<th><strong>QUANTITY</strong></th>
+ 	<th><strong>TOTAL</strong></th>
+ </tr>
+ <% @order.each do |order| %>
+   <tr>
+    <td><%= Item.find(order.item_id).serial_no %></td>
+    <td><%= Item.find(order.item_id).name %> </td>
+  	<td><%= Item.find(order.item_id).cost %></td>
+  	<td><%= order.quantity %></td>
+  	<td><%= order.total %></td>
+  </tr>
+ <% end %>
+ </table>
+ <%= form.submit "PURCHASE MORE" %>
+ <% end %>

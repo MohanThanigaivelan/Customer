@@ -1,0 +1,38 @@
+ <h1>BUY ITEMS</h1>
+<%= form_with scope: :order , :html => { :multipart =>true},url: bill_path,local: true do |form| %>
+  <p>
+  <%= form.label :Customerid %><br>
+   <b><%= form.text_field :cust_id, value: @customer.id ,:readonly => true %></b>
+  </p>
+  <p>
+  <%= form.label :Customername %><br>
+   <b><%= form.text_field :cust_name, value: @customer.name ,:readonly => true %></b>
+  </p>
+ <p>
+    <%= form.label :ITEMNAME %><br>
+    <% options = options_from_collection_for_select(@item, 'id', 'name') %>
+    <%= form.select :name,  options, class: :textfield %>
+  </p>
+  <p>
+    <%= form.label :cost %><br>
+    <%= form.text_field :cost  , class: :textfield,onkeydown: "sample();",:readonly => true %>
+  </p>
+   <p>
+    <%= form.label :avaliablestock %><br>
+    <%= form.number_field :stock ,:readonly => true%>
+  </p>
+  <p>
+    <%= form.label :quantity %><br>
+    <%= form.text_field :quantity  , onkeyup: "sample();" %>
+  </p>
+  <p>
+     <%= form.label :total %><br>
+    <%= form.text_field :total  , onkeyup: "sample();" ,:readonly => true%>
+  </p>
+  <p>
+</p>
+  <p>
+    <%= form.submit "PLACE ORDER",  :id => "place" %>
+  </p>
+<% end %>
+

@@ -1,0 +1,14 @@
+<%= form_with scope: :customer1 , :html => { :multipart =>true},url: buy_path,local: true do |form| %>
+ <p>
+    <%= form.label :customerid %><br>
+    <%= form.number_field :cust_id %>
+  </p>
+  <p>
+    <%= form.label :customer_name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.submit "BUY ITEMS"%>
+  </p>
+<% end %>

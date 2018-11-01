@@ -1,0 +1,25 @@
+
+<h1>Listing Items</h1>
+ 
+<table>
+  <tr>
+    <th>SERIAL NUMBER</th>
+    <th>NAME</th>
+    <th>COST</th>
+    <th>STOCK</th>
+  </tr>
+ 
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= item.serial_no %></td>
+      <td><%= item.name %></td>
+      <td><%= item.cost %></td>
+      <td><%= item.stock %></td>
+      <td><%= link_to 'Show', item_path(item) %></td>
+      <td><%= link_to 'AddStock', edit_item_path(item) %></td>
+       <td><%= link_to 'Destroy', item_path(item),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
