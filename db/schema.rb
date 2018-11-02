@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2018_11_01_051555) do
     t.string "name"
     t.date "dob"
     t.text "address"
-    t.decimal "phone"
+    t.bigint "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "photo_file_name"

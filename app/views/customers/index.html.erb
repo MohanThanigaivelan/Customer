@@ -23,7 +23,9 @@ customer_path(customer) %></td>
       <td><%= link_to 'Destroy', customer_path(customer),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
-      <td><%= link_to 'BuyItems','items/new' %></td>
+      <td><%= link_to 'BuyItems',{:controller => "orders", :action => "buy", :cust_id => customer.id } ,method: :get %></td>
+      <td><%= link_to 'ShowItems',{:controller => "orders", :action => "bill", :cust_id => customer.id } %></td>
+      <td><%= link_to 'ItemsList',items_path %></td>
     </tr> 
   <% end %>
 </table>

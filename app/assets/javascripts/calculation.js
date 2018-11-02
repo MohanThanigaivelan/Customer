@@ -6,13 +6,10 @@ function sample(){
  }
 $(document).ready(function(){
      $("input#place").click(function(){
-        
         var stock=parseInt($( "input#order_stock" ).val());
         var quantity=parseInt($( "input#order_quantity" ).val());
         stock=stock-quantity
         $("input#order_stock").val(stock);
-        alert("HERE")
-
     });
      $("input#add").click(function(){
           var stock=parseInt($( "input#item_stock" ).val());
@@ -21,6 +18,7 @@ $(document).ready(function(){
           $( "input#item_stock" ).val(stock+"")
     });
     $("input#order_quantity").keyup(function(){
+      console.log("I AM HERE")
         var stock=parseInt($( "input#order_stock" ).val());
         var quantity=parseInt($( "input#order_quantity" ).val());
         if (stock < quantity)
