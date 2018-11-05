@@ -1,6 +1,9 @@
 class CustomersController < ApplicationController
   def index
-    @customer = Customer1.all
+   puts params
+    @customer = current_customer1.id
+    
+    # @customer=Customer1.all
   end
   def show
     @customer = Customer1.find(params[:id])
@@ -38,6 +41,9 @@ end
  end
  private
   def customer_params
-    params.require(:customer1).permit(:name,:dob,:photo,:address,:phone)
+    params.require(:customer1).permit(:name,:dob,:photo,:address,:phone,:email)
+  end
+  def login_params
+    params.require(:customer1).permit(:email)
   end
 end

@@ -1,0 +1,32 @@
+
+<h1>LISTING CUSTOMER DETAILS</h1>
+ 
+<table>
+  <tr>
+    <th>NAME</th>
+    <th>DATE OF BIRTH</th>
+    <th>ADDRESS</th>
+    <th>PHONE NUMBER</th>
+    <th>PHOTO</th>
+  </tr>
+ 
+  <% @customer.each do |customer| %>
+    <tr>
+      <td><%= customer.name %></td>
+      <td><%= customer.dob %></td>
+      <td><%= customer.address %></td>
+      <td><%= customer.phone %></td>
+      <td><%= customer.photo %></td>
+      <td><%= link_to 'Show', 
+customer_path(customer) %></td>
+       <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+      <td><%= link_to 'Destroy', customer_path(customer),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'BuyItems',{:controller => "orders", :action => "buy", :cust_id => customer.id } ,method: :get %></td>
+      <td><%= link_to 'ShowItems',{:controller => "orders", :action => "bill", :cust_id => customer.id } %></td>
+      <td><%= link_to 'ItemsList',items_path %></td>
+    </tr> 
+  <% end %>
+</table>
+<%= link_to "Sign out", destroy_customer1_session_path,:method => :delete %>

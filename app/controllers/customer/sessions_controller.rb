@@ -5,7 +5,7 @@ class Customer::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   def new
-    super
+     super
   end
 
   # POST /resource/sign_in
@@ -15,13 +15,20 @@ class Customer::SessionsController < Devise::SessionsController
 
   # DELETE /resource/sign_out
   def destroy
-    super
+     reset_session
+     redirect_to '/customer1s/sign_in'
   end
 
 protected
 
   # If you have extra params to permit, append them to the sanitizer.
+  
+  
   def configure_sign_in_params
     devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
+  end
+  def after_sign_out_path_for(resource)
+    puts "SIGN OUT"
+    super(resource)
   end
 end

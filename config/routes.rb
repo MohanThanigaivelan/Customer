@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   
-  devise_for :customer1s,:controllers => { registrations: 'customer/registrations' }  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-   
+  devise_for :customer1s,:controllers => { registrations: 'customer/registrations' ,sessions: 'customer/sessions'}  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
    resources :customers, :orders ,:items
    get "bill",to: "orders#bill"
    patch "bill",to: "orders#updateStock"
@@ -9,5 +8,5 @@ Rails.application.routes.draw do
    post "buy",to: "orders#buy"
    post "bill",to: "orders#bill"
 
-   root 'customers#new'
+   root 'customers#index'
 end

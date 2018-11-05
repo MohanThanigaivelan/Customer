@@ -1,7 +1,7 @@
 
 <h1>Edit customer</h1>
  
-<%= form_for @customer, :url => customers_path  do |form| %>
+<%= form_for @customer, :url => customer_path  do |form| %>
   <% if @customer.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -23,7 +23,10 @@
     <%= form.label :dob %><br>
     <%= form.date_field :dob %>
   </p>
-   
+   <p>
+    <%= form.label :email %><br>
+     <%= form.text_field :email, value: current_customer1.email %>
+  </p>
   <p>
     <%= form.label :address %><br>
     <%= form.text_area :address %>
@@ -41,4 +44,4 @@
     <%= form.submit "Save changes" %>
   </p>
   <% end %>
-  <%= link_to 'Back', customer_path %>
+  <%= link_to 'Back', customers_path %>

@@ -1,7 +1,11 @@
-  <%= image_tag @customer.photo.url(:small) %>
+ <%= image_tag @customer.photo.url(:small) %>
 <p>
   <strong>Name:</strong>
   <%= @customer.name %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @customer.email %>
 </p>
 <p>
   <strong>DOB</strong>
@@ -15,4 +19,9 @@
 <p>
   <strong>Phone number:</strong>
   <%= @customer.phone %>
-</p>	
+</p>
+<p>
+  <strong>EMAIL:</strong>
+  <%= @customer.email %>
+</p>		
+<%= link_to 'Back',customers_path %>
