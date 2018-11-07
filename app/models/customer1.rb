@@ -17,9 +17,8 @@ class Customer1 < ApplicationRecord
   
   validates :phone, presence: true,
                    length: { is: 10}
-
   
- validates_attachment_file_name :photo, :matches => [/png\Z/]
+  validates_attachment_file_name :photo, :matches => [/png\Z/]
   validates :name, length: { minimum: 5 }
-  validates :password, :format => {:with => /^(?=.*[a-zA-Z])(?=.*[0-9]).{7,}$/, message: "must be at least 7 characters and include one number and one letter."}
+  validates :password, :format => {:with => /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[0-9]).{8,}$/, message: "must be at least 7 characters and include one number and one letter and one special character.",:multiline => true} 
 end

@@ -16,11 +16,11 @@
     @order1.quantity=k["quantity"]
     @order1.save
     @customer=Customer1.where(id: k["cust_id"]).take
-   else
-    k=customer_params
-    @customer=Customer1.where(id: k["cust_id"]).take
-   end
-    @order=@customer.orders
+   # else
+   #  k=customer_params
+   #  @customer=Customer1.where(id: k["cust_id"]).take
+    end
+    @order=current_customer1.orders
     
  end
  def edit
@@ -39,7 +39,7 @@ if params[:commit] == "BUY ITEMS"
   @item=Item.all
   puts "BUY ITEMS"  
 else
-  puts params[:commit]
+  puts params[:commit]  
   k=customer_params
   @customer=Customer1.where(id: k["cust_id"]).take
   @item=Item.all

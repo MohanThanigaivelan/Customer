@@ -3,7 +3,10 @@
 class Customer::PasswordsController < Devise::PasswordsController
   # GET /resource/password/new
   def new
-    super
+     if params[:message]
+        @customer=Customer1.find_by(id: params[:message])
+     end
+     self.resource=resource_class.new
   end
 
   # POST /resource/password
@@ -13,12 +16,14 @@ class Customer::PasswordsController < Devise::PasswordsController
 
   # GET /resource/password/edit?reset_password_token=abcdef
   def edit
-    super
+  
+     super
   end
 
   # PUT /resource/password
   def update
-    super
+   @customer = Customer1.find_by(reset_password_token: "d59261cbcf504320d9278a9625716cacbf9bb9e17cd13b5f405d35bff09a73c9")
+   puts @customer
   end
 
  protected
@@ -29,6 +34,6 @@ class Customer::PasswordsController < Devise::PasswordsController
 
   # The path used after sending reset password instructions
   def after_sending_reset_password_instructions_path_for(resource_name)
-    signin_path
+    super
   end
 end

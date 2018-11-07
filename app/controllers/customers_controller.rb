@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
   def index
-   puts params
-    @customer = current_customer1.id
+    @customer = current_customer1
+     @order=current_customer1.orders 
     
     # @customer=Customer1.all
   end
@@ -36,8 +36,11 @@ end
  
  def destroy
   @customer = Customer1.find(params[:id])
-  @customer.destroy
-  redirect_to customers_path
+  @customer.update_attribute(:deleted,true)
+  reset_session
+  redirect_to '/customer1s/sign_in'        
+ end
+ def first
  end
  private
   def customer_params

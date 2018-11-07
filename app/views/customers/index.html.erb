@@ -1,10 +1,34 @@
  <h1>ONLINE SHOPPING</h1>
   <%= link_to 'Profile', customer_path(@customer) %><br>
   <%= link_to 'Edit', edit_customer_path(@customer) %><br>
+
+<%= link_to 'BuyItems',{:controller => "orders", :action => "buy",   :cust_id => current_customer1.id} ,method: :get %><br>
   <%= link_to 'Destroy', customer_path(@customer),
               method: :delete,
               data: { confirm: 'Are you sure?' } %><br>
-<%= link_to 'ItemsList',items_path %><br>
-<%= link_to 'BuyItems',{:controller => "orders", :action => "buy",   :cust_id => current_customer1.id} ,method: :get %><br>
-<%= link_to 'ShowItems',{:controller => "orders", :action => "bill", :cust_id => current_customer1.id } %><br>
 <%= link_to "Sign out", destroy_customer1_session_path,:method => :delete %>
+
+<%= form_for @customer, url: "/orders", html: {method: "get"} do |form| %>
+<p>
+  <h1>Customer Name: <%= @customer.name %></h1>
+</p>
+<table>
+<h1>BILLING DETAILS</h1>
+<tr>
+    <th><strong>SERIAL NUMBER  </strong></th>
+  <th><strong> ITEM NAME  </strong></th>
+  <th><strong>ITEM COST</strong></th>  
+  <th><strong>QUANTITY</strong></th>
+  <th><strong>TOTAL</strong></th>
+ </tr>
+ <% @order.each do |order| %>
+   <tr>
+    <td><%= Item.find(order.item_id).serial_no %></td>
+    <td><%= Item.find(order.item_id).name %> </td>
+    <td><%= Item.find(order.item_id).cost %></td>
+    <td><%= order.quantity %></td>
+    <td><%= order.total %></td>
+  </tr>
+ <% end %>
+ </table>
+ <% end %>

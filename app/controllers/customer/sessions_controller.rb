@@ -10,7 +10,29 @@ class Customer::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    super
+  
+    @customer = Customer1.find_by(email: params[:customer1][:email])
+    if @customer != nil
+      if @customer.valid_password?(params[:customer1][:password]) 
+           if !@customer.deleted
+           session[:id] = current_customer1.id
+           puts @customer.deleted   
+           redirect_to '/customers'
+           else
+            k=@customer.id
+            redirect_to new_customer1_password_url(message: k)
+
+           end
+
+      else
+         reset_session
+         redirect_to '/customer1s/sign_in'
+      end
+    else
+     reset_session
+     redirect_to '/customer1s/sign_in'
+    end
+    
   end
 
   # DELETE /resource/sign_out

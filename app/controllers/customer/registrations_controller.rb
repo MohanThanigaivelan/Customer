@@ -9,15 +9,13 @@ before_action :configure_sign_up_params, only: [:create]
 
   
   def new
-    
     super
   end
 
   # POST /resource
   def create
-    
     super
-  end
+    end
 
   # GET /resource/edit
   def edit
@@ -52,7 +50,6 @@ before_action :configure_sign_up_params, only: [:create]
   #If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up){ |u| u.permit(:name,:password,:password_configuration,:email ,:phone ,:address ,:photo ,:dob)}
-    puts "CALLED"
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -63,15 +60,13 @@ def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up).push(:name)
   end
   # The path used after sign up.
-  def after_sign_up_path_for(resource)
-    
+  def after_sign_up_path_for(resource)    
     super(resource)
   end
 
 
   # The path used after sign up for inactive accounts.
   def after_inactive_sign_up_path_for(resource)
-    puts "HERE"
     super(resource)
   end
 end
