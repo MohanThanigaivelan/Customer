@@ -2,6 +2,7 @@
 
 class Customer::PasswordsController < Devise::PasswordsController
   # GET /resource/password/new
+  after_action :updateDeleted, only:[:update]
   def new
      if params[:message]
         @customer=Customer1.find_by(id: params[:message])
@@ -22,10 +23,13 @@ class Customer::PasswordsController < Devise::PasswordsController
 
   # PUT /resource/password
   def update
-   @customer = Customer1.find_by(reset_password_token: "d59261cbcf504320d9278a9625716cacbf9bb9e17cd13b5f405d35bff09a73c9")
-   puts @customer
-  end
+       puts params[:customer1][:reset_password_token]
+       reset_password_token = Devise.token_generator.digest(self, :reset_password_token, params[:customer1][:reset_password_token])
+       @customer=Customer1.find_by(reset_password_token: reset_password_token)
 
+       super
+
+  end
  protected
 
   def after_resetting_password_path_for(resource)
@@ -36,4 +40,8 @@ class Customer::PasswordsController < Devise::PasswordsController
   def after_sending_reset_password_instructions_path_for(resource_name)
     super
   end
+  def updateDeleted
+    @customer.update_attribute(:deleted,false)
+    puts @customer.deleted
+  end 
 end

@@ -38,6 +38,8 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'doorkeeper', '~> 5.0', '>= 5.0.2'
+gem 'oauth2', '~> 1.4', '>= 1.4.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

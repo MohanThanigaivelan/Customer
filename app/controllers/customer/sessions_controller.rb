@@ -15,8 +15,7 @@ class Customer::SessionsController < Devise::SessionsController
     if @customer != nil
       if @customer.valid_password?(params[:customer1][:password]) 
            if !@customer.deleted
-           session[:id] = current_customer1.id
-           puts @customer.deleted   
+           session[:id] = current_customer1.id   
            redirect_to '/customers'
            else
             k=@customer.id
