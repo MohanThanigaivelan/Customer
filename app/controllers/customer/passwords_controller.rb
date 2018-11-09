@@ -23,17 +23,15 @@ class Customer::PasswordsController < Devise::PasswordsController
 
   # PUT /resource/password
   def update
-       puts params[:customer1][:reset_password_token]
+       puts params[:customer1][:reset_password_token] 
        reset_password_token = Devise.token_generator.digest(self, :reset_password_token, params[:customer1][:reset_password_token])
        @customer=Customer1.find_by(reset_password_token: reset_password_token)
-
        super
-
   end
  protected
 
   def after_resetting_password_path_for(resource)
-    root_path
+    customer_url(resource)
   end
 
   # The path used after sending reset password instructions

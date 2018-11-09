@@ -1,15 +1,8 @@
 
 class ItemsController < ApplicationController
-  before_action :doorkeeper_authorize!
+  before_action :doorkeeper_authorize! 
   def index
     @items = Item.all
-    puts @items
-    "f7ee1657c213a18a2625eaba4e9cbe8c685c69b489506f3dff63fa8682980140"
-    respond_to do |format|
-      format.json{ 
-        render json: @items
-      }
-    end
   end
   def show
     @item = Item.find(params[:id])

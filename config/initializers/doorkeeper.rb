@@ -7,7 +7,8 @@ Doorkeeper.configure do
     #raise "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
     # Put your resource owner authentication logic here.
     # Example implementation:
-    Customer1.find_by_id(18) || redirect_to(new_customer1_session_url)
+    
+    Customer1.find_by_id(session[:id]) || redirect_to(new_customer1_session_url)
   end
 
   # If you didn't skip applications controller from Doorkeeper routes in your application routes.rb
