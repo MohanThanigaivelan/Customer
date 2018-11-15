@@ -5,6 +5,8 @@ class CustomersController < ApplicationController
     
     # @customer=Customer1.all
   end
+ def deletedcustomer
+ end
   def show
     @customer = Customer1.find(params[:id])
   end
@@ -42,6 +44,7 @@ end
  end
  def first
  end
+
  private
   def customer_params
     params.require(:customer1).permit(:name,:dob,:photo,:address,:phone,:email)

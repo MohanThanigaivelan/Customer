@@ -18,9 +18,7 @@ class Customer::SessionsController < Devise::SessionsController
            session[:id] = current_customer1.id   
            redirect_to '/customers'
            else
-            k=@customer.id
-            redirect_to new_customer1_password_url(message: k)
-
+            redirect_to '/deletedcustomer'
            end
 
       else

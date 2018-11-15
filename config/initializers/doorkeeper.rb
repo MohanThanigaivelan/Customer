@@ -4,11 +4,11 @@ Doorkeeper.configure do
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    #raise "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
+    raise "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
     # Put your resource owner authentication logic here.
     # Example implementation:
     
-    Customer1.find_by_id(session[:id]) || redirect_to(new_customer1_session_url)
+    #Customer1.find_by_id(session[:id]) || redirect_to(new_customer1_session_url)
   end
 
   # If you didn't skip applications controller from Doorkeeper routes in your application routes.rb
@@ -16,16 +16,53 @@ Doorkeeper.configure do
   # adding oauth authorized applications. In other case it will return 403 Forbidden response
   # every time somebody will try to access the admin web interface.
   #
-   admin_authenticator do
-  #   # Put your admin authentication logic here.
-  #   # Example implementation:
-  #
-    if current_customer1
-      head :forbidden unless current_customer1!=nil
-    else
-      redirect_to new_customer1_session_url
-    end
+  #  admin_authenticator do
+  # #   # Put your admin authentication logic here.
+  # #   # Example implementation:
+  # #
+  #   if current_customer1
+  #     head :forbidden unless current_customer1!=nil
+  #   else
+  #     redirect_to new_customer1_session_url
+  #   end
+  # end
+  
+  resource_owner_from_credentials do |routes|
+    customer = Customer1.find_for_database_authentication(:email => params[:email])
+    if customer && customer.valid_for_authentication? { customer.valid_password?(params[:password]) }
+      customer
+   else
+   end
+
   end
+
+
+  # Access token expiration time (default 2 hours).
+  # If you want to disable expiration, set this to nil.
+  access_token_expires_in 5.days
+
+  
+  #
+  # implicit and password grant flows have risks that you should understand
+  # before enabling:
+  #   http://tools.ietf.org/html/rfc6819#section-4.4.2
+  #   http://tools.ietf.org/html/rfc6819#section-4.4.3
+  #
+  # grant_flows %w(authorization_code client_credentials)
+  grant_flows %w(password)
+
+  # Under some circumstances you might want to have applications auto-approved,
+  # so that the user skips the authorization step.
+  # For example if dealing with a trusted application.
+  # skip_authorization do |resource_owner, client|
+  #   client.superapp? or resource_owner.admin?
+  # end
+  skip_authorization do
+    true
+  end
+
+  # WWW-Authenticate Realm (default "Doorkeeper").
+  # realm "Doorkeeper"
 
   # If you are planning to use Doorkeeper in Rails 5 API-only application, then you might
   # want to use API mode that will skip all the views management and change the way how
@@ -62,12 +99,6 @@ Doorkeeper.configure do
   # See https://github.com/doorkeeper-gem/doorkeeper#custom-access-token-generator
   #
   # access_token_generator '::Doorkeeper::JWT'
-
-  # The controller Doorkeeper::ApplicationController inherits from.
-  # Defaults to ActionController::Base.
-  # See https://github.com/doorkeeper-gem/doorkeeper#custom-base-controller
-  #
-  # base_controller 'ApplicationController'
 
   # Reuse access token for the same resource owner within an application (disabled by default).
   #
