@@ -4,11 +4,11 @@ Doorkeeper.configure do
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    raise "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
+    # raise "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
     # Put your resource owner authentication logic here.
     # Example implementation:
-    
-    #Customer1.find_by_id(session[:id]) || redirect_to(new_customer1_session_url)
+     
+    Customer1.find_by_id(session[:id]) || redirect_to(new_customer1_session_url)
   end
 
   # If you didn't skip applications controller from Doorkeeper routes in your application routes.rb
@@ -16,22 +16,23 @@ Doorkeeper.configure do
   # adding oauth authorized applications. In other case it will return 403 Forbidden response
   # every time somebody will try to access the admin web interface.
   #
-  #  admin_authenticator do
-  # #   # Put your admin authentication logic here.
-  # #   # Example implementation:
-  # #
-  #   if current_customer1
-  #     head :forbidden unless current_customer1!=nil
-  #   else
-  #     redirect_to new_customer1_session_url
-  #   end
-  # end
+   admin_authenticator do
+  #   # Put your admin authentication logic here.
+  #   # Example implementation:
+  #
+    if current_customer1
+      head :forbidden unless current_customer1!=nil
+    else
+      redirect_to new_customer1_session_url
+    end
+  end
   
   resource_owner_from_credentials do |routes|
     customer = Customer1.find_for_database_authentication(:email => params[:email])
     if customer && customer.valid_for_authentication? { customer.valid_password?(params[:password]) }
       customer
    else
+     raise Doorkeeper::Errors::DoorkeeperError.new('custom_message')
    end
 
   end
@@ -48,8 +49,8 @@ Doorkeeper.configure do
   #   http://tools.ietf.org/html/rfc6819#section-4.4.2
   #   http://tools.ietf.org/html/rfc6819#section-4.4.3
   #
-  # grant_flows %w(authorization_code client_credentials)
-  grant_flows %w(password)
+   grant_flows %w(authorization_code client_credentials)
+  #grant_flows %w(password)
 
   # Under some circumstances you might want to have applications auto-approved,
   # so that the user skips the authorization step.

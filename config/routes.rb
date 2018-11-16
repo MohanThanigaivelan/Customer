@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   use_doorkeeper
   devise_for :customer1s,:controllers => { registrations: 'customer/registrations' ,sessions: 'customer/sessions' ,passwords: 'customer/passwords'}  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
    resources :customers, :orders ,:items
-   namespace :api , constraints: { format: 'json' } do
-    resources :customers
+   namespace :api  do
+    resources :customers, defaults: {format: :json}
 
    end
    get "bill",to: "orders#bill"
