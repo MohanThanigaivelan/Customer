@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+before_action :authenticate_customer1!
 	private
 
   # Doorkeeper methods
@@ -8,4 +9,12 @@ class ApplicationController < ActionController::Base
    def doorkeeper_unauthorized_render_options(error: nil)
     { json: { error: "YOU ARE NOT AUTHORISED TO THIS PAGE" } }
   end
+
+def sign_in_and_redirect(resource_or_scope, *args)
+        options  = args.extract_options!
+        scope    = Devise::Mapping.find_scope!(resource_or_scope)
+        resource = args.last || resource_or_scope
+        sign_in(scope, resource, options)
+        redirect_to '/customers'
+      end
 end

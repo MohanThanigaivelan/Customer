@@ -53,3 +53,4 @@ end
     params.require(:customer1).permit(:email)
   end
 end
+

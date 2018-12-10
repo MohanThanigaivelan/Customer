@@ -1,8 +1,8 @@
  class OrdersController < ApplicationController
   def new
+      return "Hello World!"
   end
-  def bill
-    
+  def bill 
   if params[:commit] == "PLACE ORDER"
     k=bill_params
     @item=Item.where(id: k["name"]).take
@@ -19,7 +19,7 @@
    # else
    #  k=customer_params
    #  @customer=Customer1.where(id: k["cust_id"]).take
-    end
+  end
     @order=current_customer1.orders
     
  end
@@ -27,20 +27,20 @@
   @order= Order.new
 end
 
+
  def updateStock
  	render plain: params
  end
  def buy
  	#@customer=Customer1.find(params[:id])
  	#@order=Order.find(params[:id])
+k=customer_params
 if params[:commit] == "BUY ITEMS"
- 	k=customer_params
+ 	
  	@customer=Customer1.where(id: k["cust_id"]).take
   @item=Item.all
   puts "BUY ITEMS"  
 else
-  puts params[:commit]  
-  k=customer_params
   @customer=Customer1.where(id: k["cust_id"]).take
   @item=Item.all
 end

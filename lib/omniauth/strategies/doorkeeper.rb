@@ -2,12 +2,12 @@ require 'omniauth-oauth2'
 
 module OmniAuth
   module Strategies
-    class Customer < OmniAuth::Strategies::OAuth2
+    class Doorkeeper < OmniAuth::Strategies::OAuth2
       # change the class name and the :name option to match your application name
       option :name, :doorkeeper
 
       option :client_options, {
-        :site => "http://my_awesome_application.com",
+        :site => "http://localhost:3001",
         :authorize_url => "/oauth/authorize"
       }
 
@@ -21,13 +21,14 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= access_token.get('/api/v1/me.json').parsed
+        @raw_info ||= access_token.get('/api/17.json').parsed
       end
 
       # https://github.com/intridea/omniauth-oauth2/issues/81
       def callback_url
         full_host + script_name + callback_path
       end
+      
     end
   end
 end

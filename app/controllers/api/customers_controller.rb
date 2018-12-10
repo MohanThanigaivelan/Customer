@@ -1,5 +1,5 @@
 class Api::CustomersController < ApplicationController
-	before_action :doorkeeper_authorize! 
+	   before_action :doorkeeper_authorize! 
 	def show
      @customer=Customer1.find(params[:id])
      @order=@customer.orders

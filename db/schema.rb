@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_08_084116) do
+ActiveRecord::Schema.define(version: 2018_12_07_114024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "auctions", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "full_name"
+    t.string "email"
+    t.integer "phone_number"
+    t.text "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "customer1s", force: :cascade do |t|
     t.string "name"
@@ -32,6 +50,8 @@ ActiveRecord::Schema.define(version: 2018_11_08_084116) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.boolean "deleted", default: false
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_customer1s_on_email"
     t.index ["reset_password_token"], name: "index_customer1s_on_reset_password_token"
   end
@@ -96,6 +116,16 @@ ActiveRecord::Schema.define(version: 2018_11_08_084116) do
     t.bigint "item_id"
     t.index ["customer1_id"], name: "index_orders_on_customer1_id"
     t.index ["item_id"], name: "index_orders_on_item_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.string "name"
+    t.string "oauth_token"
+    t.datetime "oauth_expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"

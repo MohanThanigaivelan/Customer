@@ -10,7 +10,6 @@ class Customer::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-  
     @customer = Customer1.find_by(email: params[:customer1][:email])
     if @customer != nil
       if @customer.valid_password?(params[:customer1][:password]) 
@@ -37,6 +36,7 @@ class Customer::SessionsController < Devise::SessionsController
      reset_session
      redirect_to '/customer1s/sign_in'
   end
+  
 
 protected
 

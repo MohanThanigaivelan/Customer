@@ -1,4 +1,3 @@
-
 class ItemsController < ApplicationController
   # before_action :doorkeeper_authorize! 
   def index
