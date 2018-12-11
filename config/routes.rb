@@ -14,8 +14,9 @@ Rails.application.routes.draw do
    get "bill",to: "orders#bill"
    get "first",to: "customers#first"
    patch "bill",to: "orders#updateStock"
-   get "buy",to: "orders#buy"
-   post "buy",to: "orders#buy"
+   # get "buy",to: "orders#buy"
+   # post "buy",to: "orders#buy"
+   match "/buy/:id" => "orders#buy", :via => [:get], :as => "buy"
    post "bill",to: "orders#bill"
    get "deletedcustomer",to: "customers#deletedcustomer"
    root 'customers#first'

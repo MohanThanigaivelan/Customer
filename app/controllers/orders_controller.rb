@@ -1,7 +1,5 @@
  class OrdersController < ApplicationController
-  def new
-      return "Hello World!"
-  end
+  
   def bill 
   if params[:commit] == "PLACE ORDER"
     k=bill_params
@@ -21,7 +19,6 @@
    #  @customer=Customer1.where(id: k["cust_id"]).take
   end
     @order=current_customer1.orders
-    
  end
  def edit
   @order= Order.new
@@ -34,17 +31,18 @@ end
  def buy
  	#@customer=Customer1.find(params[:id])
  	#@order=Order.find(params[:id])
-k=customer_params
+
+
 if params[:commit] == "BUY ITEMS"
- 	
+ 	k=customer_params
  	@customer=Customer1.where(id: k["cust_id"]).take
   @item=Item.all
   puts "BUY ITEMS"  
 else
-  @customer=Customer1.where(id: k["cust_id"]).take
+  @customer = Customer1.find(params[:id])
   @item=Item.all
+  # redirect_to '/buy/18'
 end
- 
  end
  def update
  	render plain: params

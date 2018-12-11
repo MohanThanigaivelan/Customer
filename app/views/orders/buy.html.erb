@@ -1,5 +1,6 @@
  <h1>BUY ITEMS</h1>
 <%= form_with scope: :order , :html => { :multipart =>true},url: bill_path,local: true do |form| %>
+  <% byebug %>
   <p>
   <%= form.label :Customerid %><br>
    <b><%= form.text_field :cust_id, value: @customer.id ,:readonly => true %></b>

@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  # before_action :doorkeeper_authorize! 
+  #before_action :doorkeeper_authorize! 
   def index
     @items = Item.all
   end
@@ -29,6 +29,7 @@ end
   end	
 end 
  def update
+   
     @item = Item.find(params[:id])
     if @item.update_attributes(update_params)
        redirect_to :action => 'show', :id => @item

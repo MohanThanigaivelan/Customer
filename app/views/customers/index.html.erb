@@ -2,7 +2,7 @@
   <%= link_to 'Profile', customer_path(@customer) %><br>
   <%= link_to 'Edit', edit_customer_path(@customer) %><br>
 
-<%= link_to 'BuyItems',{:controller => "orders", :action => "buy",   :cust_id => current_customer1.id} ,method: :get %><br>
+<%= link_to 'BuyItems', buy_path(@customer),:method => :get %><br>
   <%= link_to 'Destroy', customer_path(@customer),
               method: :delete,
               data: { confirm: 'Are you sure?' } %><br>

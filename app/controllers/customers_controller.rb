@@ -1,8 +1,7 @@
 class CustomersController < ApplicationController
   def index
     @customer = current_customer1
-     @order=current_customer1.orders 
-    
+     @order=current_customer1.orders     
     # @customer=Customer1.all
   end
  def deletedcustomer

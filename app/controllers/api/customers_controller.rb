@@ -1,6 +1,7 @@
 class Api::CustomersController < ApplicationController
-	   before_action :doorkeeper_authorize! 
-	def show
+	    before_action :doorkeeper_authorize! 
+	
+  def show 
      @customer=Customer1.find(params[:id])
      @order=@customer.orders
      order_xml = JSON.parse(@order.to_json).to_xml(:root => :order)
