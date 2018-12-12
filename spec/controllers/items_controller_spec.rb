@@ -9,7 +9,7 @@ RSpec.describe ItemsController, type: :controller do
   it "When it calls update method it should update the attributes of particular item" do
     controller=ItemsController.new
     # controller.update
-    @customer=Customer1.find(18)
+    @customer=FactoryBot.create(:customer1)
     sign_in(@customer)
     params =  {item: {stock: "10"}, id: 1}
 
@@ -19,7 +19,7 @@ RSpec.describe ItemsController, type: :controller do
   it "When it calls destroy method it should delete the specific item and should redirect to items path" do
     controller=ItemsController.new
     # controller.update
-    @customer=Customer1.find(18)
+    @customer=FactoryBot.create(:customer1)
     sign_in(@customer)
     delete :destroy, params: { id: 1 } 
     expect(response.status).to eq(302)   
@@ -27,7 +27,7 @@ RSpec.describe ItemsController, type: :controller do
   it "When it calls index method it should call all items" do
     controller=ItemsController.new
     # controller.update
-    @customer=Customer1.find(18)
+    @customer=FactoryBot.create(:customer1)
     sign_in(@customer)
     delete :destroy,params: { id: 1 } 
     expect(response.status).to eq(302)   
