@@ -31,14 +31,13 @@ end
  def buy
  	#@customer=Customer1.find(params[:id])
  	#@order=Order.find(params[:id])
-
-
 if params[:commit] == "BUY ITEMS"
  	k=customer_params
  	@customer=Customer1.where(id: k["cust_id"]).take
   @item=Item.all
   puts "BUY ITEMS"  
 else
+  
   @customer = Customer1.find(params[:id])
   @item=Item.all
   # redirect_to '/buy/18'

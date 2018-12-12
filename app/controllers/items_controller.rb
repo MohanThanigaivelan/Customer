@@ -38,6 +38,7 @@ end
     end
   end
   def destroy
+    byebug
     @item = Item.find(params[:id])
     @item.destroy
     redirect_to items_path
